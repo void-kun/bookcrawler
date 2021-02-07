@@ -1,0 +1,15 @@
+
+{
+  "name": "bookcrawler",
+  "version": "1.0.0",
+  "description": "book crawler",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "zrik",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.16.2"
+  }
+}
