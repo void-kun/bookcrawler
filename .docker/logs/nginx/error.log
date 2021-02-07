@@ -1,0 +1,2 @@
+2021/02/07 15:15:54 [error] 10#10: *6 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://192.168.16.4:3000/", host: "localhost"
+2021/02/07 15:15:59 [error] 10#10: *11 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.16.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://192.168.16.4:3000/", host: "localhost"
