@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
     nginx:
@@ -9,13 +9,11 @@ services:
         command: [/bin/bash, .docker/services/nginx/build/command.sh]
         ports:
             - 443:443
-            - 8080:8080
         volumes:
             - ./.docker/services/nginx/conf:/etc/nginx/conf.d
             - .:/var/www/app
         volumes_from: 
             - api
-            - pgadmin
 
     api:
         build:
@@ -26,6 +24,8 @@ services:
         volumes:
             - .:/var/www/app
         command: [/bin/bash, ./.docker/services/api/command.sh]
+        env_file: 
+            - ./.docker/services/api/.env
         expose:
             - 3000
         depends_on:
@@ -57,7 +57,7 @@ services:
         env_file:
             - ./.docker/services/pgadmin/.env
         ports:
-            - 80
+            - 8080:80
         volumes:
             - pg-data:/var/lib/pgadmin
         links:

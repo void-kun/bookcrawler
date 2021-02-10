@@ -1,5 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
 cd api
-yarn install
-yarn run start
+pip install -r requirements.txt
+gunicorn --bind 0.0.0.0:3000 manage:app
