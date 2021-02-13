@@ -6,7 +6,14 @@
 import scrapy
 
 
-class CronItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class BookItem(scrapy.Item):
+    title = scrapy.Field()
+    avatar_url = scrapy.Field()
+    visibility = scrapy.Field()
+    author = scrapy.Field()
+    state = scrapy.Field()
+    last_chapter_title = scrapy.Field()
+    last_chapter_url = scrapy.Field()
+    last_chapter_at = scrapy.Field()
+    categories = scrapy.Field()
+    summary = scrapy.Field()

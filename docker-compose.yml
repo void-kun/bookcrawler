@@ -32,6 +32,21 @@ services:
             - db
             - redis
         tty: true
+        stdin_open: true
+
+    cron:
+        build:
+            context: ./.docker/services
+            dockerfile: ./cron/Dockerfile
+        container_name: cron
+        restart: always
+        volumes:
+            - .:/var/www/app
+        entrypoint: [/bin/bash, ./.docker/services/cron/command.sh]
+        command: tail -F /dev/null
+        depends_on:
+            - db
+        tty: true
 
     db:
         image: postgres:12-alpine
