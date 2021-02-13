@@ -6,7 +6,7 @@
 import scrapy
 
 
-class CronCrawlItem(scrapy.Item):
+class CronItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass

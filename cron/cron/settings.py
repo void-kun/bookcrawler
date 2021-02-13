@@ -1,4 +1,4 @@
-# Scrapy settings for cron_crawl project
+# Scrapy settings for cron project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'cron_crawl'
+BOT_NAME = 'cron'
 
-SPIDER_MODULES = ['cron_crawl.spiders']
-NEWSPIDER_MODULE = 'cron_crawl.spiders'
+SPIDER_MODULES = ['cron.spiders']
+NEWSPIDER_MODULE = 'cron.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'cron_crawl (+http://www.yourdomain.com)'
+#USER_AGENT = 'cron (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'cron_crawl.middlewares.CronCrawlSpiderMiddleware': 543,
+#    'cron.middlewares.CronSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'cron_crawl.middlewares.CronCrawlDownloaderMiddleware': 543,
+#    'cron.middlewares.CronDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'cron_crawl.pipelines.CronCrawlPipeline': 300,
+#    'cron.pipelines.CronPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

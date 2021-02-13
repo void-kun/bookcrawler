@@ -8,6 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class CronCrawlPipeline:
+class CronPipeline:
     def process_item(self, item, spider):
         return item

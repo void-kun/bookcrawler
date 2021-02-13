@@ -1,8 +1,8 @@
 import scrapy
 from re import search
 
-class ListBookSpider(scrapy.Spider):
-    name = 'list_book'
+class WikidichBookSpider(scrapy.Spider):
+    name = 'wikidich_list_book'
     allowed_domains = 'wikidich.com'
 
     def start_requests(self):
