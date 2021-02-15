@@ -23,18 +23,28 @@ class CronPipeline:
         self.connection.close()
 
     def process_item(self, item: BookItem, spider):
-        query = f"""
-            INSERT INTO raw_local.craw_book_raw(
-                title, url, avatar_url, visibility, author, state, 
-                last_chapter_title, last_chapter_at, 
-                categories, summary) 
-            values('{item['title']}', '{item['url']}', '{item['avatar_url']}',
-            {item['visibility']}, '{item['author']}', '{item['state']}',
-            '{item['last_chapter_title']}', '{convert_date(item['last_chapter_at'])}',
-            ARRAY [{','.join(item['categories'])}], '{item['summary']}');
-        """
-        self.cur.execute(query)
-        self.connection.commit()
+        try:
+            query = f"""
+                INSERT INTO raw_local.craw_book_raw(
+                    title, url, avatar_url, visibility, author, state, 
+                    last_chapter_title, last_chapter_at, 
+                    categories, summary) 
+                values('{item['title']}', '{item['url']}', '{item['avatar_url']}',
+                {item['visibility']}, '{item['author']}', '{item['state']}',
+                '{item['last_chapter_title']}', '{convert_date(item['last_chapter_at'])}',
+                ARRAY [{','.join(item['categories'])}], '{item['summary']}')
+                ON CONFLICT (url) DO UPDATE 
+                SET visibility = excluded.visibility, 
+                    state = excluded.state,
+                    last_chapter_title = last_chapter_title,
+                    last_chapter_at = last_chapter_at;
+            """
+            self.cur.execute(query)
+            self.connection.commit()
+        except Exception as e:
+            with open('error.log', 'a') as f:
+                f.write(str(e))
+            self.connection.rollback()
         return item
 
     def create_db(self):

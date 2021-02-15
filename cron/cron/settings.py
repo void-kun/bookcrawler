@@ -11,7 +11,8 @@ BOT_NAME = 'cron'
 
 SPIDER_MODULES = ['cron.spiders']
 NEWSPIDER_MODULE = 'cron.spiders'
-
+RETRY_TIMES = 5
+DOWNLOAD_DELAY = 1
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'cron (+http://www.yourdomain.com)'
