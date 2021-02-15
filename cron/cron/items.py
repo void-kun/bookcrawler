@@ -7,6 +7,7 @@ import scrapy
 
 
 class BookItem(scrapy.Item):
+    url = scrapy.Field()
     title = scrapy.Field()
     avatar_url = scrapy.Field()
     visibility = scrapy.Field()

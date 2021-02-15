@@ -3,5 +3,9 @@
 cd cron
 apt-get update
 apt-get upgrade -y
-apt-get install -y gcc
+apt-get install -y gcc cron
 pip install -r requirements.txt
+
+crontab -l | { cat; echo "*/10 * * * * /var/www/app/.docker/services/cron/cron.sh"; } | crontab -
+
+tail -F /dev/null

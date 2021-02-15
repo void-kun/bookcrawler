@@ -2,6 +2,7 @@ from src import db
 
 
 class Category(db.Model):
+    __table_args__ = {"schema": "crawl_local"}
     __tablename__ = 'category'
 
     id = db.Column(db.Integer, nullable=False, primary_key=True)

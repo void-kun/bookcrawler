@@ -2,6 +2,7 @@ from src import db
 
 
 class Author(db.Model):
+    __table_args__ = {"schema": "crawl_local"}
     __tablename__ = 'author'
 
     id = db.Column(db.Integer, nullable=False, primary_key=True)

@@ -4,10 +4,11 @@ from src import db
 
 
 class Chapter(db.Model):
+    __table_args__ = {"schema": "crawl_local"}
     __tablename__ = 'chapter'
 
     id = db.Column(db.Integer, nullable=False, primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('crawl_local.book.id'), nullable=False)
     chap_number = db.Column(db.Integer, nullable=False, default=0)
     title = db.Column(db.Text, nullable=False)
     title_slug = db.Column(db.String(255), unique=True, nullable=False)
