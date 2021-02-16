@@ -131,3 +131,39 @@ duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
 DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/6010316954b8085787f4c579?o=1) already exists.
 duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
 DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/600fae9e54b80875efd456bd?o=1) already exists.
+column reference "last_chapter_title" is ambiguous
+LINE 16:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 15:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 16:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 15:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 22:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 19:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 14:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 15:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 16:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 15:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 15:                     last_chapter_title = last_chapter_title,
+                                                  ^
+column reference "last_chapter_title" is ambiguous
+LINE 21:                     last_chapter_title = last_chapter_title,
+                                                  ^
