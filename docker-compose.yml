@@ -69,7 +69,5 @@ services:
             - ./.env
         ports:
             - 8080:80
-        volumes:
-            - ./data/pgclient:/var/lib/pgadmin
         links:
             - "db:pgsql-server"
