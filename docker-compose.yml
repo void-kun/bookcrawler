@@ -37,7 +37,6 @@ services:
         restart: always
         volumes:
             - ./cron:/var/www/cron
-        command: [/bin/bash, ./command.sh]
         env_file: 
             - ./.env
         depends_on:

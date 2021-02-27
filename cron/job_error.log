@@ -1,0 +1,110 @@
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
+duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
+DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/60390b3654b8080947a5f1ff?o=1) already exists.
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
+duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
+DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/60390b3654b8080947a5f1ff?o=1) already exists.
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
+duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
+DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/60390b3654b8080947a5f1ff?o=1) already exists.
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
+duplicate key value violates unique constraint "craw_book_raw_avatar_url_key"
+DETAIL:  Key (avatar_url)=(https://wikidich.com/photo/60390b3654b8080947a5f1ff?o=1) already exists.
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+relation "raw_local.craw_book_raw" does not exist
+LINE 2:                 INSERT INTO raw_local.craw_book_raw(
+                                    ^
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
+syntax error at or near "Last"
+LINE 14: ...L, Gensokyo, Arknights, Mahō Shōjo Madoka, Girls' Last Tour,...
+                                                              ^
