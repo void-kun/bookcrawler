@@ -2,7 +2,7 @@
 FROM python:3.8.1-slim-buster
 
 # set work directory
-WORKDIR /var/www/app
+WORKDIR /var/www/cron
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

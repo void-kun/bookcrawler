@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd api
 apt-get update
 apt-get upgrade -y
 pip install -r requirements.txt

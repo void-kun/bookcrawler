@@ -1,6 +1,6 @@
 #!/bin/bash
 
-certDir=".docker/services/nginx/certs"
+certDir="/etc/nginx/certs"
 
 if [ ! -f "$certDir/ssl.key" ]; then
     mkdir -p $certDir

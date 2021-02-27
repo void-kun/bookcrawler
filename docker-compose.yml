@@ -2,30 +2,27 @@ version: '3.7'
 
 services:
     nginx:
-        build:
-            context: ./.docker/services
-            dockerfile: ./nginx/build/Dockerfile
+        build: ./nginx/
         container_name: nginx
-        command: [/bin/bash, .docker/services/nginx/build/command.sh]
+        command: [/bin/bash, ./command.sh]
         ports:
             - 443:443
         volumes:
-            - ./.docker/services/nginx/conf:/etc/nginx/conf.d
-            - .:/var/www/app
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/certs:/etc/nginx/certs
+            - ./nginx/command.sh:/etc/nginx/command.sh
         volumes_from: 
             - api
 
     api:
-        build:
-            context: ./.docker/services
-            dockerfile: ./api/Dockerfile
+        build: ./api/
         container_name: api
         restart: always
         volumes:
-            - .:/var/www/app
-        command: [/bin/bash, ./.docker/services/api/command.sh]
+            - ./api:/var/www/app
+        command: [/bin/bash, ./command.sh]
         env_file: 
-            - ./.docker/services/api/.env
+            - ./.env
         expose:
             - 3000
         depends_on:
@@ -35,14 +32,12 @@ services:
         stdin_open: true
 
     cron:
-        build:
-            context: ./.docker/services
-            dockerfile: ./cron/Dockerfile
+        build: ./cron/
         container_name: cron
         restart: always
         volumes:
-            - .:/var/www/app
-        command: [/bin/bash, ./.docker/services/cron/command.sh]
+            - ./cron:/var/www/cron
+        command: [/bin/bash, ./command.sh]
         env_file: 
             - ./.env
         depends_on:
@@ -54,32 +49,27 @@ services:
         container_name: db
         restart: always
         volumes:
-            - db-data:/var/lib/postgresql/data
+            - ./data/db:/var/lib/postgresql/data
         ports:
             - 5432:5432
         env_file:
-            - ./.docker/services/db/.env
+            - ./.env
 
     redis:
         image: redis:3.2
         container_name: redis
         volumes:
-            - ./.docker/services/redis/data:/data
+            - ./data/redis:/data
         
     pgadmin:
         container_name: pgadmin
         image: dpage/pgadmin4:4.30
         restart: always
         env_file:
-            - ./.docker/services/pgadmin/.env
+            - ./.env
         ports:
             - 8080:80
         volumes:
-            - pg-data:/var/lib/pgadmin
+            - ./data/pgclient:/var/lib/pgadmin
         links:
             - "db:pgsql-server"
-
-volumes:
-    db-data:
-    pg-data:
-
