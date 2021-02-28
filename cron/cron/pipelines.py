@@ -11,7 +11,7 @@ class WKBookListPipeline:
     def open_spider(self, spider):
         with open('wk_booklist_time.log', 'a') as f:
             f.write(f'running at {datetime.now()}\n')
-        
+
         self.db = DB()
         self.db.open_db()
         self.cur = self.db.connection.cursor()
