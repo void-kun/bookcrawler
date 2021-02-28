@@ -6,8 +6,6 @@ WORKDIR /var/www/cron
 
 COPY . .
 
-RUN touch job-cron.log
-
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

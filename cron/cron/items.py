@@ -18,3 +18,10 @@ class BookItem(scrapy.Item):
     last_chapter_at = scrapy.Field()
     categories = scrapy.Field()
     summary = scrapy.Field()
+
+
+class ChapterItem(scrapy.Item):
+    book_id = scrapy.Field()
+    title = scrapy.Field()
+    url = scrapy.Field()
+    content = scrapy.Field()

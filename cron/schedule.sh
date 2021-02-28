@@ -6,10 +6,15 @@ echo "Docker container has been started"
 declare -p | grep -Ev 'BASHOPTS|BASH_VERSINFO|EUID|PPID|SHELLOPTS|UID' > /container.env
 
 # Setup a cron schedule
-echo "SHELL=/bin/bash
+echo "
+SHELL=/bin/bash
 BASH_ENV=/container.env
-* * * * * /var/www/cron/cron.sh >> /var/www/cron/job-cron.log 2>&1
-# This extra line makes it a valid cron" > scheduler.txt
+
+# schedule crawl books wikidich basic
+0 */3 * * * /var/www/cron/wk_books_cron.sh
+0 */3 * * * /var/www/cron/wk_books_cron.sh
+
+" > scheduler.txt
 
 crontab scheduler.txt
 cron -f

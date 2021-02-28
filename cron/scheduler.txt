@@ -1,4 +1,8 @@
+
 SHELL=/bin/bash
 BASH_ENV=/container.env
-* * * * * /var/www/cron/cron.sh >> /var/www/cron/job-cron.log 2>&1
-# This extra line makes it a valid cron
+
+# schedule crawl books wikidich basic
+0 */3 * * * /var/www/cron/wk_books_cron.sh
+
+
