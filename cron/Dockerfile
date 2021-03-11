@@ -21,6 +21,5 @@ RUN apt-get update &&\
 RUN pip install -r requirements.txt
 
 # cron.sh
-RUN chmod +x cron.sh schedule.sh
-
+RUN chmod +x wk_books_cron.sh schedule.sh
 ENTRYPOINT ./schedule.sh

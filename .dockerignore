@@ -4,3 +4,4 @@ env
 __pycache__
 
 error.log
+data/db

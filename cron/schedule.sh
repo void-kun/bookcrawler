@@ -12,7 +12,7 @@ BASH_ENV=/container.env
 
 # schedule crawl books wikidich basic
 0 */3 * * * /var/www/cron/wk_books_cron.sh
-0 */3 * * * /var/www/cron/wk_books_cron.sh
+# 0 */3 * * * /var/www/cron/wk_chaps_cron.sh
 
 " > scheduler.txt
 
