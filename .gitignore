@@ -3,6 +3,6 @@ env
 
 .vscode
 log
-
+data
 __pycache__
 
