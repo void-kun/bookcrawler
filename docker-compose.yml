@@ -14,19 +14,21 @@ services:
     #     depends_on:  
     #         - api
 
-    # bw-webserver:
-    #     build: ./bw-webserver/
-    #     container_name: bw-webserver
-    #     restart: always
-    #     volumes:
-    #         - ./bw-webserver:/var/www/server
-    #     env_file: 
-    #         - ./.env
-    #     expose:
-    #         - 3000
-    #     depends_on:
-    #         - bw-database
-    #     tty: true
+    bw-webserver:
+        build: ./bw-webserver/
+        container_name: bw-webserver
+        restart: always
+        volumes:
+            - ./bw-webserver:/usr/src/app/
+            - /usr/src/app/node_modules
+        ports:
+            - 3000:3000
+        env_file: 
+            - ./.env
+        depends_on:
+            - bw-database
+        tty: true
+        command: bun run dev
 
     bw-database:
         image: postgres:12-alpine
@@ -39,14 +41,3 @@ services:
             - 5432:5432
         env_file:
             - ./.env
-
-    pgadmin:
-        container_name: pgadmin
-        image: dpage/pgadmin4:5.4
-        restart: always
-        env_file:
-            - ./.env
-        ports:
-            - 8080:80
-        links:
-            - "bw-database:pgsql-server"
