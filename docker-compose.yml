@@ -1,53 +1,40 @@
 version: '3.7'
 
 services:
-    nginx:
-        build: ./nginx/
-        container_name: nginx
-        command: [/bin/bash, ./command.sh]
-        ports:
-            - 443:443
-        volumes:
-            - ./nginx/conf.d:/etc/nginx/conf.d
-            - ./nginx/certs:/etc/nginx/certs
-            - ./nginx/command.sh:/etc/nginx/command.sh
-        depends_on:  
-            - api
+    # nginx:
+    #     build: ./docker/nginx/
+    #     container_name: nginx
+    #     command: [/bin/bash, ./command.sh]
+    #     ports:
+    #         - 443:443
+    #     volumes:
+    #         - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    #         - ./docker/nginx/certs:/etc/nginx/certs
+    #         - ./docker/nginx/command.sh:/etc/nginx/command.sh
+    #     depends_on:  
+    #         - api
 
-    api:
-        build: ./api/
-        container_name: api
-        restart: always
-        volumes:
-            - ./api:/var/www/app
-        command: [/bin/bash, ./command.sh]
-        env_file: 
-            - ./.env
-        expose:
-            - 3000
-        depends_on:
-            - db
-        tty: true
-        stdin_open: true
+    # bw-webserver:
+    #     build: ./bw-webserver/
+    #     container_name: bw-webserver
+    #     restart: always
+    #     volumes:
+    #         - ./bw-webserver:/var/www/server
+    #     env_file: 
+    #         - ./.env
+    #     expose:
+    #         - 3000
+    #     depends_on:
+    #         - bw-database
+    #     tty: true
 
-    cron:
-        build: ./cron/
-        container_name: cron
-        restart: always
-        volumes:
-            - ./cron:/var/www/cron
-        env_file: 
-            - ./.env
-        depends_on:
-            - db
-        tty: true
-
-    db:
+    bw-database:
         image: postgres:12-alpine
-        container_name: db
+        container_name: bw-database
         restart: always
         volumes:
-            - ./data/db:/var/lib/postgresql/data
+            - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./docker/postgres/data:/var/lib/postgresql/data
         ports:
             - 5432:5432
         env_file:
@@ -62,4 +49,4 @@ services:
         ports:
             - 8080:80
         links:
-            - "db:pgsql-server"
+            - "bw-database:pgsql-server"

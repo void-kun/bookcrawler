@@ -4,6 +4,8 @@ env
 .vscode
 log
 data
+*dump*
 __pycache__
 
 *.bk*
+*.dtmp*
