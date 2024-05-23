@@ -16,7 +16,7 @@ type Metadata struct {
 }
 
 type Crawl struct {
-	Sources []Source
+	Sources []Source[*WikidichSource]
 }
 
 func (c *Crawl) LoadSources(dataPath string) error {
@@ -35,16 +35,15 @@ func (c *Crawl) LoadSources(dataPath string) error {
 	}
 
 	if metadata["wikidich"] != (Metadata{}) {
-		var wikidichSource SourceParse
-		wikidichSource = WikidichSource{}
-		wikidichSource.New(metadata["wikidich"].Url)
-		c.Sources = append(c.Sources, wikidichSource)
+		wikidich := New(&WikidichSource{})
+		wikidich.Body.New(metadata["wikidich"].Url)
+		c.Sources = append(c.Sources, wikidich)
 	}
 
 	if metadata["metruyencv"] != (Metadata{}) {
-		metruyencvSource := MetruyencvSource{}
-		metruyencvSource.New(metadata["wikidich"].Url)
-		c.Sources = append(c.Sources, metruyencvSource)
+		metruyencv := New(&MetruyencvSource{})
+		metruyencv.Body.New(metadata["metruyencv"].Url)
+		c.Sources = append(c.Sources, metruyencv)
 	}
 
 	return nil

@@ -1,12 +1,12 @@
 package crawl
 
 type MetruyencvSource struct {
-	Source
+	SourceType
 }
 
 func (s *MetruyencvSource) New(url string) {
-	s.Source.Name = "metruyencv"
-	s.Source.URL = url
+	s.Name = "metruyencv"
+	s.URL = url
 }
 
 func (s *MetruyencvSource) Search() {}
