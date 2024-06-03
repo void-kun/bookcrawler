@@ -7,9 +7,14 @@ use crate::Config;
 
 #[async_trait]
 pub trait Source {
-    /// Extract wikidich metadata
+    /// Extract metadata(categories, ...) for source.
     async fn crawl_metadata(&mut self, meta: &Config) -> Result<(), Box<dyn std::error::Error>>;
-    async fn crawl(&self) -> anyhow::Result<(), Box<dyn std::error::Error>>;
+    /// Extract book info.
+    async fn crawl_booklist(
+        &mut self,
+        meta: &Config,
+        url: String,
+    ) -> anyhow::Result<(), Box<dyn std::error::Error>>;
 }
 
 #[derive(Debug)]
@@ -25,4 +30,67 @@ impl Category {
 
         Category { name, id, slug }
     }
+}
+
+#[derive(Debug)]
+pub enum BookStatus {
+    CONTINUES,
+    PENDING,
+    FINISHED,
+    NOTYET,
+}
+
+impl BookStatus {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            BookStatus::CONTINUES => "Còn tiếp",
+            BookStatus::PENDING => "Tạm ngưng",
+            BookStatus::FINISHED => "Hoàn thành",
+            BookStatus::NOTYET => "Chưa xác minh",
+        }
+    }
+}
+
+pub fn book_status(status: &str) -> BookStatus {
+    match status {
+        "Còn tiếp" => BookStatus::CONTINUES,
+        "Tạm ngưng" => BookStatus::PENDING,
+        "Hoàn thành" => BookStatus::FINISHED,
+        "Chưa xác minh" => BookStatus::NOTYET,
+        _ => panic!("Error: book status not exists."),
+    }
+}
+
+#[derive(Debug)]
+pub struct Author {
+    name: String,
+    origin_name: String,
+}
+
+#[derive(Debug)]
+pub struct Rate {
+    visibility: u32,
+    star: u32,
+    comments: u32,
+}
+
+#[derive(Debug)]
+pub struct Comment {
+    owner: String,
+    interval: u64,
+    message: String,
+    children: Vec<Comment>,
+}
+
+#[derive(Debug)]
+pub struct Book {
+    title: String,
+    author: Author,
+    url: String,
+    categories: Vec<Category>,
+    summary: String,
+    avatar: String,
+    rates: Rate,
+    status: BookStatus,
+    comments: Comment,
 }

@@ -13,3 +13,4 @@ scraper.workspace = true
 async-trait.workspace = true
 unidecode.workspace = true
 toml.workspace = true
+regex = "1.10.4"

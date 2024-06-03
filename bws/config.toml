@@ -1,6 +1,7 @@
 [wikidich]
 URL = "https://truyenwikidich.net"
-URL_SEARCH = "https://truyenwikidich.net/tim-kiem"
+URL_SEARCH = "https://truyenwikidich.net/tim-kiem?qs=1&status=5794f03dd7ced228f4419192&gender=5794f03dd7ced228f4419196&tc=&tf=0&m=6&y=2024&q="
+
 # xpath for wikidich search
 CATEGORY_WRAPPER_PATH = "div.book-attr-box > form > div"
 CATEGORY_TYPE_PATH = "div.book-attr-type"

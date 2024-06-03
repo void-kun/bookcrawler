@@ -19,7 +19,9 @@ async fn main() -> anyhow::Result<()> {
     let source_names: Vec<String> = config.sources();
     if source_names.contains(&SourceEnum::WIKIDICH.to_string()) {
         let mut wikidich = Wikidich::new();
-        match wikidich.crawl_metadata(&config).await {
+        match wikidich.crawl_booklist(&config, "https://truyenwikidich.net/tim-kiem?qs=1&status=5794f03dd7ced228f4419192&gender=5794f03dd7ced228f4419196&tc=&tf=0&m=6&y=2024&q=&start=0&vo=2".to_string()).await {
+
+        // match wikidich.crawl_metadata(&config).await {
             Ok(_) => {
                 sources.push(Box::new(wikidich));
             }

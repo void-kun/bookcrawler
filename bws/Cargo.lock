@@ -155,6 +155,7 @@ dependencies = [
  "async-trait",
  "env_logger",
  "log",
+ "regex",
  "reqwest",
  "scraper",
  "tokio",
