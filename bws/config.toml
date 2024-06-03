@@ -1,0 +1,13 @@
+[wikidich]
+URL = "https://truyenwikidich.net"
+URL_SEARCH = "https://truyenwikidich.net/tim-kiem"
+# xpath for wikidich search
+CATEGORY_WRAPPER_PATH = "div.book-attr-box > form > div"
+CATEGORY_TYPE_PATH = "div.book-attr-type"
+CATEGORY_GROUP_PATH = "div.book-attr-group > div.book-attr-name"
+CATEGORY_TITLE_PATH = "label"
+CATEGORY_ID_PATH = "input"
+
+[metruyencv]
+URL = "https://metruyencv.com"
+URL_SEARCH = "https://metruyencv.com/tim-kiem"

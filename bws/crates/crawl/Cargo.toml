@@ -1,0 +1,15 @@
+[package]
+name = "crawl"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow.workspace = true
+tokio.workspace = true
+log.workspace = true
+env_logger.workspace = true
+reqwest.workspace = true
+scraper.workspace = true
+async-trait.workspace = true
+unidecode.workspace = true
+toml.workspace = true
