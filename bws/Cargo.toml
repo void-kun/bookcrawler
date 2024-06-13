@@ -1,18 +1,17 @@
 [workspace]
 resolver = "2"
-members = ["crates/crawl", "crates/search"]
+members = ["crates/crawl", "crates/search", "crates/ui"]
 
-default-members = ["crates/crawl"]
- 
+default-members = ["crates/ui"]
+
 
 [workspace.dependencies]
 anyhow = "1.0.86"
 tokio = { version = "1", features = ["full"] }
 log = "0.4.20"
 env_logger = "0.10.0"
-reqwest = {version = "0.12.4", features = ["json"]}
+reqwest = { version = "0.12.4", features = ["json"] }
 scraper = "0.19.0"
-async-trait = "0.1.80"
+async-trait = "0.1.75"
 unidecode = "0.3.0"
 toml = "0.8.13"
-
