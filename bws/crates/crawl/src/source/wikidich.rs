@@ -1,12 +1,12 @@
-use crate::{config::*, source::book_status};
+use crate::config::*;
 
 use super::{Book, Category, Source};
 use async_trait::async_trait;
 use regex::Regex;
-use scraper::{selectable::Selectable, ElementRef, Html, Selector};
-use std::{collections::HashMap, result};
+use scraper::{selectable::Selectable, Html, Selector};
+use std::collections::HashMap;
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Wikidich {
     pub starturl: String,
     pub books: Vec<Book>,
@@ -14,16 +14,6 @@ pub struct Wikidich {
 }
 
 impl Wikidich {
-    /// Init wikidich instance
-    pub fn new() -> Self {
-        Wikidich {
-            starturl: String::from(""),
-            books: Vec::new(),
-            categories: HashMap::new(),
-        }
-    }
-
-    /// Extract wikidich metadata - categories
     async fn extract_categories(
         &mut self,
         config: &HashMap<String, String>,
@@ -109,18 +99,16 @@ impl Wikidich {
         config: &HashMap<String, String>,
         url: &String,
     ) -> anyhow::Result<Wikidich, Box<dyn std::error::Error>> {
-        let wikidich: Wikidich = Wikidich::new();
+        let wikidich: Wikidich = Wikidich::default();
 
         let resp = reqwest::get(url).await?;
         let document = Html::parse_fragment(resp.text().await?.as_str());
 
-        log::info!("document {:?}", document);
-        let title_sel = Selector::parse(".cover-info > div > h2").unwrap();
+        let title_sel = Selector::parse(config.get(BOOK_INFO_TITLE).unwrap()).unwrap();
         let title = document.select(&title_sel).next().unwrap().inner_html();
 
         log::info!("{}", title);
-        let stats_sel =
-            Selector::parse("div.cover-info > div > p > span.book-stats > span").unwrap();
+        let stats_sel = Selector::parse(config.get(BOOK_INFO_STATS).unwrap()).unwrap();
         let mut stats = document.select(&stats_sel);
 
         let visibility = stats.nth(0).unwrap().inner_html();
@@ -139,9 +127,10 @@ impl Wikidich {
 
 #[async_trait]
 impl Source for Wikidich {
-    async fn crawl_metadata(&mut self, meta: &Config) -> Result<(), Box<dyn std::error::Error>> {
-        let config = meta.get_source(SourceEnum::WIKIDICH).unwrap();
-
+    async fn crawl_metadata(
+        &mut self,
+        config: &HashMap<String, String>,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         // metadata - url
         self.starturl = config.get(SOURCE_URL_SEARCH).unwrap().to_string();
 
@@ -150,38 +139,31 @@ impl Source for Wikidich {
             Ok(_) => log::info!("Extract category successfull!"),
             Err(e) => return Err(e),
         }
-
         Ok(())
     }
 
     async fn crawl_booklist(
         &mut self,
-        meta: &Config,
-        url: String,
+        config: &HashMap<String, String>,
+        url: &String,
     ) -> anyhow::Result<(), Box<dyn std::error::Error>> {
-        let config = meta.get_source(SourceEnum::WIKIDICH).unwrap();
-
-        // extract booklist
         let mut book_urls: Vec<String> = Vec::new();
-        // for page in (0..20).step_by(20) {
-        //     let page_regex = Regex::new(r"start=(?P<start>\d+)&").unwrap();
-        //     let current_page: u32 = page_regex.captures(&url).unwrap()["start"].parse().unwrap();
-        //
-        //     let next_url = url.replace(
-        //         format!("&start={}&", current_page).as_str(),
-        //         format!("&start={}&", page).as_str(),
-        //     );
-        //
-        //     let mut result = match self.extract_booklist(config, &next_url).await {
-        //         Ok(value) => value,
-        //         Err(e) => return Err(e),
-        //     };
-        //     book_urls.append(&mut result);
-        // }
+        for page in (0..20).step_by(20) {
+            let page_regex = Regex::new(r"start=(?P<start>\d+)&").unwrap();
+            let current_page: u32 = page_regex.captures(&url).unwrap()["start"].parse().unwrap();
 
-        book_urls.push("https://truyenwikidich.net/truyen/hong-hoang-do-thi-chi-toi-cuong-ngoan-gi-Ws4dVmHe7C3k5vV6%22".to_string());
-        log::info!("books {:?}", book_urls);
-        // extract bookinfo (without comments)
+            let next_url = url.replace(
+                format!("&start={}&", current_page).as_str(),
+                format!("&start={}&", page).as_str(),
+            );
+
+            let mut result = match self.extract_booklist(config, &next_url).await {
+                Ok(value) => value,
+                Err(e) => return Err(e),
+            };
+            book_urls.append(&mut result);
+        }
+
         let mut books: Vec<Wikidich> = Vec::new();
         for book_url in &book_urls {
             let result: Wikidich = self.extract_bookinfo(config, book_url).await.unwrap();

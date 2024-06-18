@@ -2,7 +2,7 @@
 resolver = "2"
 members = ["crates/crawl", "crates/search", "crates/ui"]
 
-default-members = ["crates/ui"]
+default-members = ["crates/crawl"]
 
 
 [workspace.dependencies]

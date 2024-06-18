@@ -4,16 +4,20 @@ use async_trait::async_trait;
 
 use crate::util;
 use crate::Config;
+use std::collections::HashMap;
 
 #[async_trait]
 pub trait Source {
     /// Extract metadata(categories, ...) for source.
-    async fn crawl_metadata(&mut self, meta: &Config) -> Result<(), Box<dyn std::error::Error>>;
+    async fn crawl_metadata(
+        &mut self,
+        config: &HashMap<String, String>,
+    ) -> Result<(), Box<dyn std::error::Error>>;
     /// Extract book info.
     async fn crawl_booklist(
         &mut self,
-        meta: &Config,
-        url: String,
+        config: &HashMap<String, String>,
+        url: &String,
     ) -> anyhow::Result<(), Box<dyn std::error::Error>>;
 }
 

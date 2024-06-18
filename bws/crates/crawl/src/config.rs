@@ -33,6 +33,9 @@ pub const CATEGORY_GROUP: &str = "CATEGORY_GROUP_PATH";
 pub const CATEGORY_TITLE: &str = "CATEGORY_TITLE_PATH";
 pub const CATEGORY_ID: &str = "CATEGORY_ID_PATH";
 
+pub const BOOK_INFO_TITLE: &str = "BOOK_INFO_TITLE_PATH";
+pub const BOOK_INFO_STATS: &str = "BOOK_INFO_STATS_PATH";
+
 const CONFIG_PATH: &str = "config.toml";
 
 #[derive(Debug)]

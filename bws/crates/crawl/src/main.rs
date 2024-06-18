@@ -1,8 +1,9 @@
 mod config;
+mod http;
 mod source;
 mod util;
 
-use config::{Config, SourceEnum};
+use config::{Config, SourceEnum, SOURCE_URL_SEARCH};
 use source::{wikidich::Wikidich, Source};
 
 #[tokio::main]
@@ -10,7 +11,6 @@ async fn main() -> anyhow::Result<()> {
     env_logger::init();
     log::info!("Start crawling...");
 
-    // Load config
     let mut config = Config::new();
     config.initialize();
 
@@ -18,10 +18,11 @@ async fn main() -> anyhow::Result<()> {
 
     let source_names: Vec<String> = config.sources();
     if source_names.contains(&SourceEnum::WIKIDICH.to_string()) {
-        let mut wikidich = Wikidich::new();
-        match wikidich.crawl_booklist(&config, "https://truyenwikidich.net/tim-kiem?qs=1&status=5794f03dd7ced228f4419192&gender=5794f03dd7ced228f4419196&tc=&tf=0&m=6&y=2024&q=&start=0&vo=2".to_string()).await {
+        let mut wikidich = Wikidich::default();
+        let wikidich_config = config.get_source(SourceEnum::WIKIDICH).unwrap();
 
-        // match wikidich.crawl_metadata(&config).await {
+        let startup_url = wikidich_config.get(SOURCE_URL_SEARCH).unwrap();
+        match wikidich.crawl_booklist(&wikidich_config, startup_url).await {
             Ok(_) => {
                 sources.push(Box::new(wikidich));
             }
