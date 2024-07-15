@@ -14,30 +14,26 @@ services:
     #     depends_on:  
     #         - api
 
-    bw-webserver:
-        build: ./bw-webserver/
-        container_name: bw-webserver
+    bws:
+        build: ./bws/
+        container_name: bws
         restart: always
         volumes:
-            - ./bw-webserver:/usr/src/app/
-            - /usr/src/app/node_modules
+            - ./bws:/usr/src/app/
         ports:
             - 3000:3000
         env_file: 
             - ./.env
-        depends_on:
-            - bw-database
         tty: true
-        command: bun run dev
 
-    bw-database:
-        image: postgres:12-alpine
-        container_name: bw-database
-        restart: always
-        volumes:
-            - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-            - ./docker/postgres/data:/var/lib/postgresql/data
-        ports:
-            - 5432:5432
-        env_file:
-            - ./.env
+    # bw-database:
+    #     image: postgres:12-alpine
+    #     container_name: bw-database
+    #     restart: always
+    #     volumes:
+    #         - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    #         - ./docker/postgres/data:/var/lib/postgresql/data
+    #     ports:
+    #         - 5432:5432
+    #     env_file:
+    #         - ./.env
