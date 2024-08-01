@@ -33,12 +33,12 @@ type Comment struct {
 func (c *Comment) New() {}
 
 type Book struct {
-	Name       string    `json:"name"`
-	URL        string    `json:"url"`
-	State      BookState `json:"state"`
-	Genders    []Gender  `json:"genders"`
-	AvartarURL string    `json:"avartar_url"`
-	Author     Author    `json:"author"`
+	Name       string     `json:"name"`
+	URL        string     `json:"url"`
+	State      BookState  `json:"state"`
+	Categories []Category `json:"categories"`
+	AvartarURL string     `json:"avartar_url"`
+	Author     Author     `json:"author"`
 
 	// status info
 	Summary  string   `json:"summary"`

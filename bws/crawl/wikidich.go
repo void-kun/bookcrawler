@@ -1,12 +1,25 @@
 package crawl
 
-type WikidichSource struct {
-	SourceType
+import "fmt"
+
+// define crawling function for wikidich
+type Wikidich struct {
+	Source
 }
 
-func (s *WikidichSource) New(url string) {
-	s.Name = "wikidich"
-	s.URL = url
+func NewWikidich(name string, url string) *Wikidich {
+	return &Wikidich{
+		Source: Source{
+			Name: name,
+			URL:  url,
+		},
+	}
 }
 
-func (s *WikidichSource) Search() {}
+func (w *Wikidich) SearchBook() {
+	fmt.Println("search books")
+}
+
+func (w *Wikidich) CrawlCategories() {
+	fmt.Println("Craw categories")
+}

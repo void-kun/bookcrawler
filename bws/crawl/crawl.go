@@ -7,16 +7,12 @@ import (
 	"os"
 )
 
-// init a struct for crawler
-// load the config for sources
-// search book by (keyword, source)
-
 type Metadata struct {
 	Url string
 }
 
 type Crawl struct {
-	Sources []Source[*WikidichSource]
+	Sources []SourceInterface
 }
 
 func (c *Crawl) LoadSources(dataPath string) error {
@@ -28,28 +24,29 @@ func (c *Crawl) LoadSources(dataPath string) error {
 
 	var metadata map[string]Metadata
 	err = json.Unmarshal(metadataByte, &metadata)
-
 	if err != nil {
 		log.Fatal("Source config is error: ", err)
 		return err
 	}
 
 	if metadata["wikidich"] != (Metadata{}) {
-		wikidich := New(&WikidichSource{})
-		wikidich.Body.New(metadata["wikidich"].Url)
+		wikidich := NewWikidich("wikidich", metadata["wikidich"].Url)
 		c.Sources = append(c.Sources, wikidich)
 	}
 
 	if metadata["metruyencv"] != (Metadata{}) {
-		metruyencv := New(&MetruyencvSource{})
-		metruyencv.Body.New(metadata["metruyencv"].Url)
+		metruyencv := NewMetruyencv("metruyencv", metadata["metruyencv"].Url)
 		c.Sources = append(c.Sources, metruyencv)
 	}
 
 	return nil
 }
 
-func (c *Crawl) Search() {}
+func (c *Crawl) Search() {
+	for _, item := range c.Sources {
+		item.SearchBook()
+	}
+}
 
 func (c *Crawl) Save() {}
 

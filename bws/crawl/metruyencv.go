@@ -1,12 +1,25 @@
 package crawl
 
-type MetruyencvSource struct {
-	SourceType
+import "fmt"
+
+// define crawling function for metruyenchu
+type Metruyencv struct {
+	Source
 }
 
-func (s *MetruyencvSource) New(url string) {
-	s.Name = "metruyencv"
-	s.URL = url
+func NewMetruyencv(name string, url string) *Metruyencv {
+	return &Metruyencv{
+		Source: Source{
+			Name: name,
+			URL:  url,
+		},
+	}
 }
 
-func (s *MetruyencvSource) Search() {}
+func (m *Metruyencv) SearchBook() {
+	fmt.Println("search books metruyencv")
+}
+
+func (m *Metruyencv) CrawlCategories() {
+	fmt.Println("Craw categories metruyencv")
+}
