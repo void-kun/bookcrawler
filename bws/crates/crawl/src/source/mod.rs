@@ -3,7 +3,6 @@ pub mod wikidich;
 use async_trait::async_trait;
 
 use crate::util;
-use crate::Config;
 use std::collections::HashMap;
 
 #[async_trait]

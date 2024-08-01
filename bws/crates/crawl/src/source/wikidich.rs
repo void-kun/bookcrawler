@@ -150,7 +150,7 @@ impl Source for Wikidich {
         let mut book_urls: Vec<String> = Vec::new();
         for page in (0..20).step_by(20) {
             let page_regex = Regex::new(r"start=(?P<start>\d+)&").unwrap();
-            let current_page: u32 = page_regex.captures(&url).unwrap()["start"].parse().unwrap();
+            let current_page: u32 = page_regex.captures(url).unwrap()["start"].parse().unwrap();
 
             let next_url = url.replace(
                 format!("&start={}&", current_page).as_str(),
