@@ -23,3 +23,5 @@ func WithContext(ctx context.Context) ClientOption {
 		options.Context = ctx
 	}
 }
+
+// func WithUri(value string) ClientOption {}
