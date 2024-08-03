@@ -1,39 +1,45 @@
 version: '3.7'
 
 services:
-    # nginx:
-    #     build: ./docker/nginx/
-    #     container_name: nginx
-    #     command: [/bin/bash, ./command.sh]
-    #     ports:
-    #         - 443:443
-    #     volumes:
-    #         - ./docker/nginx/conf.d:/etc/nginx/conf.d
-    #         - ./docker/nginx/certs:/etc/nginx/certs
-    #         - ./docker/nginx/command.sh:/etc/nginx/command.sh
-    #     depends_on:  
-    #         - api
+  # nginx:
+  #     build: ./docker/nginx/
+  #     container_name: nginx
+  #     command: [/bin/bash, ./command.sh]
+  #     ports:
+  #         - 443:443
+  #     volumes:
+  #         - ./docker/nginx/conf.d:/etc/nginx/conf.d
+  #         - ./docker/nginx/certs:/etc/nginx/certs
+  #         - ./docker/nginx/command.sh:/etc/nginx/command.sh
+  #     depends_on:
+  #         - api
 
-    bws:
-        build: ./bws/
-        container_name: bws
-        restart: always
-        volumes:
-            - ./bws:/usr/src/app/
-        ports:
-            - 3000:3000
-        env_file: 
-            - ./.env
-        tty: true
+  # bws:
+  #     build: ./bws/
+  #     container_name: bws
+  #     restart: always
+  #     volumes:
+  #         - ./bws:/usr/src/app/
+  #     ports:
+  #         - 3000:3000
+  #     env_file:
+  #         - ./.env
+  #     tty: true
 
-    # bw-database:
-    #     image: postgres:12-alpine
-    #     container_name: bw-database
-    #     restart: always
-    #     volumes:
-    #         - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    #         - ./docker/postgres/data:/var/lib/postgresql/data
-    #     ports:
-    #         - 5432:5432
-    #     env_file:
-    #         - ./.env
+  # bw-database:
+  #     image: postgres:12-alpine
+  #     container_name: bw-database
+  #     restart: always
+  #     volumes:
+  #         - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+  #         - ./docker/postgres/data:/var/lib/postgresql/data
+  #     ports:
+  #         - 5432:5432
+  #     env_file:
+  #         - ./.env
+
+  bws-mongo:
+    image: mongo:4
+    restart: always
+    ports:
+      - "28017:27017"
